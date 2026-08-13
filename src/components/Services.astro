@@ -1,0 +1,67 @@
+<section id="diensten" class="services-section" data-services-section>
+  <div class="container services-container">
+    <div class="services-heading" data-services-reveal>
+      <p class="services-eyebrow">DIENSTEN</p>
+      <h2>Maatwerk voor elke ruimte.</h2>
+    </div>
+
+    <div class="services-list" aria-label="Diensten">
+      <article class="service-item" data-services-reveal>
+        <div>
+          <h3>Keukens</h3>
+          <p>Functioneel maatwerk met aandacht voor materiaal, indeling en afwerking.</p>
+        </div>
+        <span aria-hidden="true">→</span>
+      </article>
+
+      <article class="service-item" data-services-reveal>
+        <div>
+          <h3>Inbouwkasten</h3>
+          <p>Kasten die volledig opgaan in de ruimte en optimaal gebruikmaken van elke centimeter.</p>
+        </div>
+        <span aria-hidden="true">→</span>
+      </article>
+
+      <article class="service-item" data-services-reveal>
+        <div>
+          <h3>Maatwerk bureaus</h3>
+          <p>Praktische en rustige werkplekken die volledig op maat worden uitgewerkt.</p>
+        </div>
+        <span aria-hidden="true">→</span>
+      </article>
+
+      <article class="service-item" data-services-reveal>
+        <div>
+          <h3>Interieur op maat</h3>
+          <p>Van losse maatwerkelementen tot complete interieurprojecten.</p>
+        </div>
+        <span aria-hidden="true">→</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  const servicesSection = document.querySelector("[data-services-section]");
+  const serviceRevealItems = document.querySelectorAll("[data-services-reveal]");
+
+  serviceRevealItems.forEach((item, index) => {
+    item.setAttribute("style", `--reveal-delay: ${index * 110}ms`);
+  });
+
+  if (servicesSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          servicesSection.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.18 },
+    );
+
+    observer.observe(servicesSection);
+  } else {
+    servicesSection?.classList.add("is-visible");
+  }
+</script>

@@ -1,0 +1,115 @@
+<section id="projecten" class="projects-section" data-projects-section>
+  <div class="container projects-container">
+    <div class="projects-heading" data-projects-reveal>
+      <p class="projects-eyebrow">REALISATIES</p>
+      <h2>Gerealiseerd maatwerk.</h2>
+    </div>
+
+    <div class="projects-grid" aria-label="Realisaties">
+      <figure class="project-work" data-projects-reveal>
+        <div class="project-work-image">
+          <img
+            src="images/01-hal-inbouwkast-wit-hout.png"
+            alt="Inbouwkast in hal met wit en hout maatwerk"
+            width="1086"
+            height="1448"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>01</span>
+          <h3>Inbouwkast</h3>
+        </figcaption>
+      </figure>
+
+      <figure class="project-work" data-projects-reveal>
+        <div class="project-work-image">
+          <img
+            src="images/02-slaapkamer-inbouwkast-houtwand.png"
+            alt="Slaapkamer met maatwerk inbouwkast en houtwand"
+            width="1086"
+            height="1448"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>02</span>
+          <h3>Maatwerk interieur</h3>
+        </figcaption>
+      </figure>
+
+      <figure class="project-work" data-projects-reveal>
+        <div class="project-work-image">
+          <img
+            src="images/03-berging-inbouwkast-beige.png"
+            alt="Berging met beige maatkast en geïntegreerde opbergruimte"
+            width="1086"
+            height="1448"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>03</span>
+          <h3>Berging</h3>
+        </figcaption>
+      </figure>
+
+      <figure class="project-work project-work-wide" data-projects-reveal>
+        <div class="project-work-image">
+          <img
+            src="images/06-zolder-maatkasten-wit.png"
+            alt="Zolderruimte met witte maatkasten onder het schuine dak"
+            width="1448"
+            height="1086"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>04</span>
+          <h3>Zoldermaatwerk</h3>
+        </figcaption>
+      </figure>
+
+      <figure class="project-work" data-projects-reveal>
+        <div class="project-work-image">
+          <img
+            src="images/08-hoekbureau-maatwerk-eik-look.png"
+            alt="Maatwerk hoekbureau in eik look"
+            width="1086"
+            height="1448"
+            loading="lazy"
+          />
+        </div>
+        <figcaption>
+          <span>05</span>
+          <h3>Maatwerk bureau</h3>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<script>
+  const projectsSection = document.querySelector("[data-projects-section]");
+  const projectRevealItems = document.querySelectorAll("[data-projects-reveal]");
+
+  projectRevealItems.forEach((item, index) => {
+    item.setAttribute("style", `--reveal-delay: ${index * 120}ms`);
+  });
+
+  if (projectsSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          projectsSection.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+
+    observer.observe(projectsSection);
+  } else {
+    projectsSection?.classList.add("is-visible");
+  }
+</script>

@@ -1,0 +1,59 @@
+<section id="werkwijze" class="process-section" data-process-section>
+  <div class="container process-container">
+    <div class="process-heading" data-process-reveal>
+      <p class="process-eyebrow">WERKWIJZE</p>
+      <h2>Van idee tot plaatsing.</h2>
+    </div>
+
+    <ol class="process-list" aria-label="Werkwijze">
+      <li class="process-step" data-process-reveal>
+        <span class="process-number">01</span>
+        <h3>Kennismaking</h3>
+        <p>We bespreken de ruimte, wensen en mogelijkheden.</p>
+      </li>
+
+      <li class="process-step" data-process-reveal>
+        <span class="process-number">02</span>
+        <h3>Opmeting &amp; ontwerp</h3>
+        <p>Alles wordt nauwkeurig opgemeten en vertaald naar een doordacht maatwerkvoorstel.</p>
+      </li>
+
+      <li class="process-step" data-process-reveal>
+        <span class="process-number">03</span>
+        <h3>Productie</h3>
+        <p>Het interieur wordt op maat vervaardigd met aandacht voor materiaal en afwerking.</p>
+      </li>
+
+      <li class="process-step" data-process-reveal>
+        <span class="process-number">04</span>
+        <h3>Plaatsing</h3>
+        <p>Alles wordt zorgvuldig geplaatst en tot in detail afgewerkt.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<script>
+  const processSection = document.querySelector("[data-process-section]");
+  const processRevealItems = document.querySelectorAll("[data-process-reveal]");
+
+  processRevealItems.forEach((item, index) => {
+    item.setAttribute("style", `--reveal-delay: ${index * 120}ms`);
+  });
+
+  if (processSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          processSection.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(processSection);
+  } else {
+    processSection?.classList.add("is-visible");
+  }
+</script>

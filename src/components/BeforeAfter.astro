@@ -1,0 +1,85 @@
+<section id="voor-na" class="before-after-section" data-before-after-section>
+  <div class="container before-after-container">
+    <div class="before-after-heading" data-before-after-reveal>
+      <p class="before-after-eyebrow">VOOR &amp; NA</p>
+      <h2>Het verschil zit in de afwerking.</h2>
+      <p>
+        Schuif door het beeld en zie hoe maatwerk de ruimte rustiger, functioneler en
+        sterker maakt.
+      </p>
+    </div>
+
+    <div class="before-after-slider" data-before-after-slider data-before-after-reveal>
+      <div class="before-after-images">
+        <img
+          class="before-after-image"
+          src="images/04-voor-maatkast-rond-raam-wit.png"
+          alt="Situatie voor de plaatsing van de maatkast"
+          width="1254"
+          height="1254"
+          loading="lazy"
+        />
+        <img
+          class="before-after-image before-after-image-after"
+          src="images/05-na-maatkast-rond-raam-met-verlichte-nis.png"
+          alt="Situatie na de plaatsing van de maatkast met verlichte nis"
+          width="1254"
+          height="1254"
+          loading="lazy"
+        />
+      </div>
+
+      <span class="before-after-label before-after-label-before">Voor</span>
+      <span class="before-after-label before-after-label-after">Na</span>
+      <span class="before-after-divider" aria-hidden="true">
+        <span></span>
+      </span>
+
+      <label class="sr-only" for="before-after-range">Voor en na vergelijking</label>
+      <input
+        id="before-after-range"
+        class="before-after-range"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Voor en na vergelijking"
+        data-before-after-range
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const beforeAfterSection = document.querySelector("[data-before-after-section]");
+  const beforeAfterSlider = document.querySelector("[data-before-after-slider]");
+  const beforeAfterRange = document.querySelector("[data-before-after-range]");
+  const beforeAfterRevealItems = document.querySelectorAll("[data-before-after-reveal]");
+
+  beforeAfterRevealItems.forEach((item, index) => {
+    item.setAttribute("style", `--reveal-delay: ${index * 140}ms`);
+  });
+
+  beforeAfterRange?.addEventListener("input", (event) => {
+    const target = event.currentTarget as HTMLInputElement;
+    if (beforeAfterSlider instanceof HTMLElement) {
+      beforeAfterSlider.style.setProperty("--position", `${target.value}%`);
+    }
+  });
+
+  if (beforeAfterSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          beforeAfterSection.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.18 },
+    );
+
+    observer.observe(beforeAfterSection);
+  } else {
+    beforeAfterSection?.classList.add("is-visible");
+  }
+</script>

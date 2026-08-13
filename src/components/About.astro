@@ -1,0 +1,49 @@
+<section id="over" class="about-section" data-about-section>
+  <div class="container about-container">
+    <div class="about-content" data-about-reveal>
+      <p class="about-eyebrow">OVER JENS GROBBEN</p>
+      <h2>Vakmanschap en oog voor detail.</h2>
+      <p class="about-text">
+        Jens Grobben Interieur staat voor maatwerk dat volledig wordt afgestemd op de ruimte
+        en de wensen van de klant. Van eerste idee tot plaatsing wordt elk project met
+        aandacht voor materiaal, functionaliteit en afwerking uitgevoerd.
+      </p>
+      <a class="about-link" href="#projecten">Ontdek onze realisaties <span aria-hidden="true">→</span></a>
+    </div>
+
+    <figure class="about-media" data-about-reveal>
+      <img
+        src="images/02-slaapkamer-inbouwkast-houtwand.png"
+        alt="Maatwerk slaapkamerkast met houtwand door Jens Grobben Interieur"
+        width="1086"
+        height="1448"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+</section>
+
+<script>
+  const aboutSection = document.querySelector("[data-about-section]");
+  const aboutRevealItems = document.querySelectorAll("[data-about-reveal]");
+
+  if (aboutSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          aboutSection.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.24 },
+    );
+
+    observer.observe(aboutSection);
+  } else {
+    aboutSection?.classList.add("is-visible");
+  }
+
+  aboutRevealItems.forEach((item, index) => {
+    item.setAttribute("style", `--reveal-delay: ${index * 140}ms`);
+  });
+</script>

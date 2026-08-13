@@ -1,0 +1,54 @@
+<header class="site-header" data-site-header>
+  <div class="container header-container">
+    <a href="./" class="site-logo" aria-label="Jens Grobben Interieur home">
+      <img src="logo/Logo.png" alt="Jens Grobben Interieur" width="1536" height="1024" />
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Navigatie openen"
+      aria-expanded="false"
+      aria-controls="site-navigation"
+      data-nav-toggle
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="site-navigation" class="site-nav" aria-label="Hoofdnavigatie" data-site-nav>
+      <a href="#projecten">Realisaties</a>
+      <a href="#diensten">Diensten</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#over">Over Jens</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector("[data-site-header]");
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector("[data-site-nav]");
+
+  const updateHeaderState = () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 24);
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = header?.classList.toggle("is-nav-open") ?? false;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Navigatie sluiten" : "Navigatie openen");
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      header?.classList.remove("is-nav-open");
+      toggle?.setAttribute("aria-expanded", "false");
+      toggle?.setAttribute("aria-label", "Navigatie openen");
+    });
+  });
+
+  updateHeaderState();
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+</script>

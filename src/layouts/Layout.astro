@@ -1,0 +1,21 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Jens Grobben Interieur",
+  description = "Interieurprojecten op maat door Jens Grobben Interieur.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
